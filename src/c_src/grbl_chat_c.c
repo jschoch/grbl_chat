@@ -169,10 +169,9 @@ static void parseOffsets (char *data)
     grbl_data.awaitWCO = false;
 }
 
-static void parseFeedSpeed (char *data)
-{
     
-    /*  TODO:  refactor this
+  static void parseFeedSpeed (char *data)
+{
     char *next;
 
     next = strchr(data, ',');
@@ -181,16 +180,9 @@ static void parseFeedSpeed (char *data)
     if(parseDecimal(&grbl_data.feed_rate, data))
         grbl_data.changed.feed = true;
 
-    data = next;
-    next = strchr(data, ',');
-    *next++ = '\0';
-
-    if(parseDecimal(&grbl_data.spindle.rpm_programmed, data))
+    if(parseDecimal(&grbl_data.spindle.rpm_programmed, next))
         grbl_data.changed.rpm = true;
 
-    if(parseDecimal(&grbl_data.spindle.rpm_actual, next))
-        grbl_data.changed.rpm = true;
-    */
 }
 
 static void parseData (char *block)
