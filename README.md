@@ -4,7 +4,9 @@ https://github.com/terjeio/GRBL_MPG_DRO_BoosterPack
 
 
 
-main usage is to call gc_parseData( serial_line_data), this will update the grbl_data struct with any changes and the values of those changes.
+main usage is to call parseData( char * serial_line_data), this will update the grbl_data struct with any changes and the values of those changes.
 
-if simply waiting for a state change you can call grblParseState ( new_message, current_state).  if it returns true the state has changed
+to get the current pointer to the state structure call getData()
+
+if simply waiting for a state change you can call grblParseState (char *  new_message,grbl_data_t * current_state).  if it returns true the state has changed
 

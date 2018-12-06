@@ -61,7 +61,7 @@ const char *const grblState[NUMSTATES] = {
 };
 
 
-static grbl_data_t grbl_data = {
+grbl_data_t grbl_data = {
     .changed          = 0xFF,
     .position         = {0.0f, 0.0f, 0.0f},
     .offset           = {0.0f, 0.0f, 0.0f},
@@ -171,6 +171,8 @@ static void parseOffsets (char *data)
 
 static void parseFeedSpeed (char *data)
 {
+    
+    /*  TODO:  refactor this
     char *next;
 
     next = strchr(data, ',');
@@ -188,6 +190,7 @@ static void parseFeedSpeed (char *data)
 
     if(parseDecimal(&grbl_data.spindle.rpm_actual, next))
         grbl_data.changed.rpm = true;
+    */
 }
 
 static void parseData (char *block)
