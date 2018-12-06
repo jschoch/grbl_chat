@@ -38,7 +38,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include <stdbool.h>
 #include <math.h>
 
-#include "grbl_chat.h"
+#include "grbl_chat_c.h"
 
 #define SERIAL_NO_DATA -1
 #define NUMSTATES 13
