@@ -1,3 +1,3 @@
 extern "C"{
-  #include "grbl_chat_c.h"
+  #include "c_src/grbl_chat_c.h"
 };

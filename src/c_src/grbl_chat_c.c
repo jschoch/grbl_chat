@@ -185,7 +185,11 @@ static void parseOffsets (char *data)
 
 }
 
-static void parseData (char *block)
+grbl_data_t * getData(){
+  return &grbl_data;
+}
+
+void parseData (char *block)
 {
     static char buf[255];
 
