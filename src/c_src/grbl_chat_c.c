@@ -117,6 +117,18 @@ static bool parseDecimal (float *value, char *data)
     return changed;
 }
 
+static bool parseInt(int *value, char *data)
+{
+
+  bool changed;
+
+  int val = (int)atoi(data);
+  if((changed = val != *value))
+    *value = val;
+
+  return changed;
+}
+
 static void parsePositions (char *data)
 {
     char *next;
@@ -138,9 +150,22 @@ static void parsePositions (char *data)
         grbl_data.changed.zpos = true;
 }
 
-static void parseCmdBuffer(char *data){
+static void parseCmdBuffer_bah(char *data){
   sscanf(data,"%d,%d",&grbl_data.buffer, &grbl_data.buffer_rx);
 }
+
+static void parseCmdBuffer(char *data){
+    char *next;
+
+    next = strchr(data, ',');
+    *next++ = '\0';
+
+    if(parseInt(&grbl_data.buffer, data))
+        grbl_data.changed.buffer = true;
+
+    if(parseInt(&grbl_data.buffer_rx, next))
+        grbl_data.changed.buffer_rx = true;
+  }
 
 static void parseOffsets (char *data)
 {

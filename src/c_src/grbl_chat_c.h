@@ -97,6 +97,8 @@ typedef union {
                  dist : 1,
                  msg: 1,
                  feed: 1,
+                  buffer: 1,
+                  buffer_rx: 1,
                  rpm: 1;
     };
 } changes_t;
