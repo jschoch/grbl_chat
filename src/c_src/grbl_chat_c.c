@@ -242,7 +242,7 @@ void parseData (char *block)
             else if(!strncmp(line, "Pn:", 3))
                 strcpy(grbl_data.pins, line + 3);
   
-            else if(!strncmp(line, "Br:",7))
+            else if(!strncmp(line, "Bf:",7))
                 parseCmdBuffer(line + 7);
 
             else if(!strncmp(line, "A:", 2)) {
