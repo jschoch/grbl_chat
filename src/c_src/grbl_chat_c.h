@@ -115,6 +115,8 @@ typedef struct {
     changes_t changed;
     char pins[10];
     char block[255];
+    int buffer;
+    int buffer_rx;
 } grbl_data_t;
 
 grbl_data_t *setGrblReceiveCallback (void (*fn)(char *line));

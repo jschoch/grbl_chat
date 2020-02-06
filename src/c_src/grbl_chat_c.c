@@ -75,7 +75,9 @@ grbl_data_t grbl_data = {
     .spindle.on       = false,
     .spindle.ccw      = false,
     .coolant.mist     = false,
-    .coolant.flood    = false
+    .coolant.flood    = false,
+    .buffer = 0,
+    .buffer_rx = 0,
 };
 
 static bool flush = false;
@@ -134,6 +136,10 @@ static void parsePositions (char *data)
 
     if(parseDecimal(&grbl_data.position[Z_AXIS], next))
         grbl_data.changed.zpos = true;
+}
+
+static void parseCmdBuffer(char *data){
+  sscanf(data,"%d,%d",&grbl_data.buffer, &grbl_data.buffer_rx);
 }
 
 static void parseOffsets (char *data)
@@ -209,7 +215,8 @@ void parseData (char *block)
 
             line = strtok(NULL, "|");
         }
-
+        // sample line
+        //  <Idle|WPos:0.000,74.992,0.000|Bf:35,1023|FS:0,0|Pn:PXYZ>
         while(line) {
 
             if(!strncmp(line, "WPos:", 5)) {
@@ -234,6 +241,9 @@ void parseData (char *block)
 
             else if(!strncmp(line, "Pn:", 3))
                 strcpy(grbl_data.pins, line + 3);
+  
+            else if(!strncmp(line, "Br:",7))
+                parseCmdBuffer(line + 7);
 
             else if(!strncmp(line, "A:", 2)) {
 
