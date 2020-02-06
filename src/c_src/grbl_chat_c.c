@@ -251,14 +251,19 @@ void parseData (char *block)
                 }
                 parsePositions(line + 5);
 
-            } else if(!strncmp(line, "MPos:", 5)) {
+            } 
+    
+            else if(!strncmp(line, "MPos:", 5)) {
                 if(grbl_data.useWPos) {
                     grbl_data.useWPos = false;
                     grbl_data.changed.offset = true;
                 }
                 parsePositions(line + 5);
 
-            } else if(!strncmp(line, "FS:", 3))
+            } else if(!strncmp(line, "Bf:",3))
+              parseCmdBuffer(line + 3);
+
+            else if(!strncmp(line, "FS:", 3))
                 parseFeedSpeed(line + 3);
 
             else if(!strncmp(line, "WCO:", 4))
@@ -267,9 +272,6 @@ void parseData (char *block)
             else if(!strncmp(line, "Pn:", 3))
                 strcpy(grbl_data.pins, line + 3);
   
-            else if(!strncmp(line, "Bf:",7))
-                parseCmdBuffer(line + 7);
-
             else if(!strncmp(line, "A:", 2)) {
 
                 line = &line[2];
